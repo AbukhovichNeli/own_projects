@@ -38,3 +38,39 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 1rem 0;
+  gap: 1rem;
+  scrollbar-width: thin;
+}
+
+.hour-circle {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 30%;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+  user-select: none;
+  cursor: default;
+}
+
+.time {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.temp {
+  font-size: 1.2rem;
+}
+</style>
