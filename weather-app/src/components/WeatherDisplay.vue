@@ -9,3 +9,32 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['location'],
+  data() {
+    return { weather: null }
+  },
+  watch: {
+    location: 'fetchWeather'
+  },
+  methods: {
+    async fetchWeather() {
+      if (!this.location) return
+      const { latitude, longitude } = this.location
+      const today = new Date().toISOString().split('T')[0]
+      const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0]
+
+      const res = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&start_date=${today}&end_date=${tomorrow}&timezone=auto`
+      )
+      const data = await res.json()
+      this.weather = data
+    },
+    formatHour(dateStr) {
+      return new Date(dateStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    }
+  }
+}
+</script>
