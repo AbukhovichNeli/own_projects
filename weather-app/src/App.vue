@@ -8,12 +8,12 @@
 
 <script>
 import SearchBar from "./components/SearchBar.vue";
-//import WeatherDisplay from "./components/WeatherDisplay.vue";
+import WeatherDisplay from "./components/WeatherDisplay.vue";
 
 export default {
   components: {
     SearchBar,
-    /*WeatherDisplay,*/
+    WeatherDisplay,
   },
   data() {
     return {
