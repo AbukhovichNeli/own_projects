@@ -9,6 +9,35 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      query: "",
+      results: [],
+    };
+  },
+  methods: {
+    async searchLocation() {
+      try {
+        const res = await fetch(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${this.query}&count=5&language=en&format=json`
+        );
+        const data = await res.json();
+        this.results = data.results || [];
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    },
+    selectLocation(location) {
+      this.$emit("location-selected", location);
+      this.results = [];
+      this.query = "";
+    },
+  },
+};
+</script>
+
 <style scoped>
 li {
   list-style: none;
